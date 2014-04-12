@@ -14,11 +14,13 @@ $(function(){
 			// Open dialog
 			$( "#dialog-confirm" ).dialog({
 				resizable: false,
-				height:140,
+				height:210,
+				width:350,
 				modal: true,
 				buttons: {
 					"Create ticket": function() {
-						$( this ).dialog( "close" );
+						//$( this ).dialog( "close" );
+						$("#issue-form").submit();
 					},
 					"Cancel": function() {
 						$( this ).dialog( "close" );
