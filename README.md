@@ -12,3 +12,7 @@ Show a confirm dialog when an user :
 ### Compatible Versions
 
 Redmine 2.x
+
+### Todo
+
+* Localize text
