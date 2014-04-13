@@ -2,13 +2,13 @@
 
 This plugin provides enhancement for issues assignment.
 
-## Features
+### Features
 
 Show a confirm dialog when an user :
  
 * create a ticket with any person assigned
 * updates a ticket without changing the person assigned (only if current user is issue asigned)
 
-## Compatible Versions
+### Compatible Versions
 
 Redmine 2.x
