@@ -5,12 +5,16 @@ $(function(){
 				+ 'Create a ticket with no assigned person, not alert person (no email). Your ticket may go to the trap-door. We recommend that you set one!</p>'
 				+ '</div>' );
 
-	// Follow form submission
-	$( "#issue-form" ).submit(function( event ) {
-		event.preventDefault();
+	// Hook form submission
+	$( "input[name='commit'], input[name='continue']" ).click(function( event ) {
+		// Get form related
+		var the_issue_form = $(event.target).closest("form");
 
-		// No assignement ?
+		// No assignement for any user ?
 		if ( $("#issue_assigned_to_id").val() == '' ) {
+			// Kill event
+			event.preventDefault();
+
 			// Open dialog
 			$( "#dialog-confirm" ).dialog({
 				resizable: false,
@@ -19,8 +23,7 @@ $(function(){
 				modal: true,
 				buttons: {
 					"Create ticket": function() {
-						//$( this ).dialog( "close" );
-						$("#issue-form").submit();
+						the_issue_form.submit();
 					},
 					"Cancel": function() {
 						$( this ).dialog( "close" );
