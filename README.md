@@ -1,5 +1,7 @@
 # redmine assignement helper
 
+This plugin provides enhancement for issues assignment.
+
 ## Features
 
 Show a confirm dialog when an user :
