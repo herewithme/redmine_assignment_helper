@@ -2,6 +2,12 @@ $(function () {
     // Append dialog on footer
     $("body").append('<div id="rah-dialog" style="display:none;" title="Are you sure ?"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 40px 0;"></span><span id="dynamic-text"></span></p></div>');
 
+    // Save assigned user when select change
+    var new_assigned_id = 0;
+    $('#issue_assigned_to_id').on('change', function() {
+        new_assigned_id = this.value;
+    });
+
     // Hook form new issue submission
     $(".new_issue input[name='commit'], .new_issue input[name='continue']").click(function (event) {
         // Get form related
@@ -35,8 +41,7 @@ $(function () {
             event.preventDefault();
 
             // Add assigned user as watcher
-            var assigned_to_id = $("#issue_assigned_to_id").val();
-            $("#issue_watcher_user_ids_" + assigned_to_id).find('input').prop('checked', true);
+            $("#issue_watcher_user_ids_" + new_assigned_id).find('input').prop('checked', true);
 
             // Exec form
             the_issue_form.submit();
@@ -79,9 +84,8 @@ $(function () {
             event.preventDefault();
 
             // Add assigned user as watcher
-            var assigned_to_id = $("#issue_assigned_to_id").val();
             var checkbox_parent = $("#users_for_watcher");
-            checkbox_parent.find('input[value=' + assigned_to_id + ']').prop('checked', true);
+            checkbox_parent.find('input[value=' + new_assigned_id + ']').prop('checked', true);
 
             // Exec form
             the_issue_form.submit();
