@@ -30,6 +30,16 @@ $(function () {
                     }
                 }
             });
+        } else {
+            // Kill event
+            event.preventDefault();
+
+            // Add assigned user as watcher
+            var assigned_to_id = $("#issue_assigned_to_id").val();
+            $("#issue_watcher_user_ids_" + assigned_to_id).find('input').prop('checked', true);
+
+            // Exec form
+            the_issue_form.submit();
         }
     });
 
@@ -64,6 +74,45 @@ $(function () {
                     }
                 }
             });
+        } else {
+            // Kill event
+            event.preventDefault();
+
+            // Add assigned user as watcher
+            var assigned_to_id = $("#issue_assigned_to_id").val();
+            var checkbox_parent = $("#users_for_watcher");
+            checkbox_parent.find('input[value=' + assigned_to_id + ']').prop('checked', true);
+
+            // Exec form
+            the_issue_form.submit();
         }
     });
 });
+
+/*
+    // Hook form submission for new issue (form event)
+    $(".edit_issue").submit(function( event ) {
+        var assigned_to_id = $("#issue_assigned_to_id").val();
+        $("#issue_watcher_user_ids_" + assigned_to_id).find('input').prop('checked', true);
+    });
+
+    // Hook form submission for update issue (form event)
+    $(".new_issue").submit(function( event ) {
+        var assigned_to_id = $("#issue_assigned_to_id").val();
+        var checkbox_parent = $("#users_for_watcher");
+        checkbox_parent.find('input[value=' + assigned_to_id + ']').prop('checked', true);
+    });
+
+    // Hook form new issue submission (buttons)
+    $(".new_issue input[name='commit'], .new_issue input[name='continue']").click(function (event) {
+        var assigned_to_id = $("#issue_assigned_to_id").val();
+        $("#issue_watcher_user_ids_" + assigned_to_id).find('input').prop('checked', true);
+    });
+
+    // Hook form update issue submission (buttons)
+    $(".edit_issue input[name='commit'], .edit_issue input[name='continue']").click(function (event) {
+        var assigned_to_id = $("#issue_assigned_to_id").val();
+        var checkbox_parent = $("#users_for_watcher");
+        checkbox_parent.find('input[value=' + assigned_to_id + ']').prop('checked', true);
+    });
+*/
