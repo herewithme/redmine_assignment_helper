@@ -2,12 +2,6 @@ $(function() {
 	// Append dialog on footer
 	$("body").append('<div id="rah-dialog" style="display:none;" title="Are you sure ?"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 40px 0;"></span><span id="dynamic-text"></span></p></div>');
 
-	// Save assigned user when select change
-	var new_assigned_id = 0;
-	$('#issue_assigned_to_id').on('change', function() {
-		new_assigned_id = this.value;
-	});
-
 	// Hook form new issue submission
 	$(".new_issue input[name='commit'], .new_issue input[name='continue']").click(function(event) {
 		// Get form related
@@ -41,7 +35,7 @@ $(function() {
 			event.preventDefault();
 
 			// Add assigned user as watcher
-			$("#issue_watcher_user_ids_" + new_assigned_id).find('input').prop('checked', true);
+			$("#issue_watcher_user_ids_" + $("#issue_assigned_to_id").val()).find('input').prop('checked', true);
 
 			// Exec form
 			the_issue_form.submit();
@@ -83,40 +77,28 @@ $(function() {
 			// Kill event
 			event.preventDefault();
 
-			// Add assigned user as watcher
-			var checkbox_parent = $("#users_for_watcher");
-			checkbox_parent.find('input[value=' + new_assigned_id + ']').prop('checked', true);
+			// Get form URL for add watchers
+			$.get($('#watchers a').attr('href'), function(data) {
+				ajax_form_url = $('#new-watcher-form').attr('action');
+				$('#ajax-modal').dialog('close');
+			});
+
+			// Add new watcher
+			if (typeof ajax_form_url != 'undefined') {
+				$.ajax({
+					type: "POST",
+					url: ajax_form_url,
+					dataType: 'script',
+					data: {
+						utf8: "✓",
+						authenticity_token: jQuery('meta[name=csrf-token]').attr('content'),
+						'watcher[user_ids][]': $("#issue_assigned_to_id").val()
+					}
+				});
+			}
 
 			// Exec form
 			the_issue_form.submit();
 		}
 	});
 });
-
-/*
- // Hook form submission for new issue (form event)
- $(".edit_issue").submit(function( event ) {
- var assigned_to_id = $("#issue_assigned_to_id").val();
- $("#issue_watcher_user_ids_" + assigned_to_id).find('input').prop('checked', true);
- });
- 
- // Hook form submission for update issue (form event)
- $(".new_issue").submit(function( event ) {
- var assigned_to_id = $("#issue_assigned_to_id").val();
- var checkbox_parent = $("#users_for_watcher");
- checkbox_parent.find('input[value=' + assigned_to_id + ']').prop('checked', true);
- });
- 
- // Hook form new issue submission (buttons)
- $(".new_issue input[name='commit'], .new_issue input[name='continue']").click(function (event) {
- var assigned_to_id = $("#issue_assigned_to_id").val();
- $("#issue_watcher_user_ids_" + assigned_to_id).find('input').prop('checked', true);
- });
- 
- // Hook form update issue submission (buttons)
- $(".edit_issue input[name='commit'], .edit_issue input[name='continue']").click(function (event) {
- var assigned_to_id = $("#issue_assigned_to_id").val();
- var checkbox_parent = $("#users_for_watcher");
- checkbox_parent.find('input[value=' + assigned_to_id + ']').prop('checked', true);
- });
- */
