@@ -13,7 +13,7 @@ $(function() {
 			event.preventDefault();
 
 			// Set right text for dialog
-			$('#dynamic-text').text( redmine_ah.no_assignement );
+			$('#dynamic-text').html( redmine_ah.no_assignement );
 
 			// Open dialog
 			$("#rah-dialog").dialog({
@@ -56,7 +56,7 @@ $(function() {
 			event.preventDefault();
 
 			// Set right text for dialog
-			$('#dynamic-text').text( redmine_ah.same_assignement );
+			$('#dynamic-text').html( redmine_ah.same_assignement );
 
 			// Open dialog
 			$("#rah-dialog").dialog({
