@@ -13,7 +13,7 @@ $(function() {
 			event.preventDefault();
 
 			// Set right text for dialog
-			$('#dynamic-text').text('Create a ticket with no assigned person, not alert person (no email). Your ticket may go to the trap-door. We recommend that you set one!');
+			$('#dynamic-text').text( redmine_ah.no_assignement );
 
 			// Open dialog
 			$("#rah-dialog").dialog({
@@ -56,7 +56,7 @@ $(function() {
 			event.preventDefault();
 
 			// Set right text for dialog
-			$('#dynamic-text').text('You are about to update a ticket without reassign to another person. This means that only observers of the ticket will be notified. If there is no observer, no one shall be notified.');
+			$('#dynamic-text').text( redmine_ah.dialog_same_assignement );
 
 			// Open dialog
 			$("#rah-dialog").dialog({

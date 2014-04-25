@@ -1,2 +1,11 @@
 <%= stylesheet_link_tag 'redmine_assignment_helper.css', :plugin => 'redmine_assignment_helper' %>
+
+<%= javascript_tag do %>
+	/* <![CDATA[ */
+	var redmine_ah = {
+		"no_assignement": "#{escape_javascript l(:dialog_no_assignement)}",
+		"same_assignement": "#{escape_javascript l(:dialog_same_assignement)}",
+	};
+	/* ]]> */
+<% end %>
 <%= javascript_include_tag 'redmine_assignment_helper.js', :plugin => 'redmine_assignment_helper' %>
