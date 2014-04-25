@@ -3,8 +3,8 @@
 <%= javascript_tag do %>
 	/* <![CDATA[ */
 	var redmine_ah = {
-		"no_assignement": "#{escape_javascript l(:dialog_no_assignement)}",
-		"same_assignement": "#{escape_javascript l(:dialog_same_assignement)}",
+		"no_assignement": "<%= escape_javascript l(:dialog_no_assignement) %>",
+		"same_assignement": "<%= escape_javascript l(:dialog_same_assignement) %>",
 	};
 	/* ]]> */
 <% end %>
