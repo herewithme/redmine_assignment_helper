@@ -7,8 +7,30 @@ $(function() {
 		// Get form related
 		var the_issue_form = $(event.target).closest("form");
 
-		// No assignement for any user ?
-		if ($("#issue_assigned_to_id").val() == '') {
+		// Private tracker ?
+		if ( $("#issue_tracker_id").val() == 5 && $("#issue_is_private").prop('checked') == false ) {
+			// Kill event
+			event.preventDefault();
+
+			// Set right text for dialog
+			$('#dynamic-text').html( redmine_ah.private_workflow );
+
+			// Open dialog
+			$("#rah-dialog").dialog({
+				resizable: false,
+				height: 210,
+				width: 350,
+				modal: true,
+				buttons: {
+					"Create ticket": function() {
+						the_issue_form.submit();
+					},
+					"Cancel": function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+		} else if ($("#issue_assigned_to_id").val() == '') { // No assignement for any user ?
 			// Kill event
 			event.preventDefault();
 
@@ -49,9 +71,31 @@ $(function() {
 	$(".edit_issue input[name='commit'], .edit_issue input[name='continue']").click(function(event) {
 		// Get form related
 		var the_issue_form = $(event.target).closest("form");
+		
+		// Private tracker ?
+		if ( $("#issue_tracker_id").val() == 5 && $("#issue_is_private").prop('checked') == false ) {
+			// Kill event
+			event.preventDefault();
 
-		// No assignement for any user ?
-		if ($("#issue_assigned_to_id").val() == original_assigned_id) {
+			// Set right text for dialog
+			$('#dynamic-text').html( redmine_ah.private_workflow );
+
+			// Open dialog
+			$("#rah-dialog").dialog({
+				resizable: false,
+				height: 210,
+				width: 350,
+				modal: true,
+				buttons: {
+					"Create ticket": function() {
+						the_issue_form.submit();
+					},
+					"Cancel": function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+		} else if ($("#issue_assigned_to_id").val() == original_assigned_id) { // No assignement for any user ?
 			// Kill event
 			event.preventDefault();
 

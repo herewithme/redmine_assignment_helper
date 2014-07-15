@@ -1,4 +1,5 @@
 # English strings go here for Rails i18n
 en:
   dialog_no_assignement: "Create a ticket with no assigned person, not alert person (no email). Your ticket may go to the trap-door. We recommend that you set one!"
-  dialog_same_assignement: "'You are about to update a ticket without reassign to another person. This means that only observers of the ticket will be notified. If there is no observer, no one shall be notified.'"
+  dialog_same_assignement: "You are about to update a ticket without reassign to another person. This means that only observers of the ticket will be notified. If there is no observer, no one shall be notified."
+  dialog_private_workflow: "You should probably set this ticket as private as a result the selected tracker."

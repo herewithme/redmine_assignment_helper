@@ -2,3 +2,4 @@
 fr:
   dialog_no_assignement: "Créer un ticket sans personne assignée n'alerta personne ! Votre demande passera à coup sur à le trappe. Nous vous recommandons de l'assigner à quelqu'un !"
   dialog_same_assignement: "Vous êtes entrain de mettre à jour une demande sans la réassigner. Cela veut dire que seul les observateurs seront notifiés. S'il n'y a pas d'observateur, personne ne le sera..."
+  dialog_private_workflow: "Vous devriez probablement fixer ce ticket comme privé étant donné le tracker sélectionné."
