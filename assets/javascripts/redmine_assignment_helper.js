@@ -4,6 +4,10 @@ $(function() {
 
 	// Hook form new issue submission
 	$(".new_issue input[name='commit'], .new_issue input[name='continue']").click(function(event) {
+		// Get name from currenct click
+		var current_name_button = $(this).attr('name');
+		var current_opposed_name_button = ( current_name_button == 'commit' ) ? 'continue' : 'commit';
+
 		// Get form related
 		var the_issue_form = $(event.target).closest("form");
 
@@ -23,6 +27,7 @@ $(function() {
 				modal: true,
 				buttons: {
 					"Create ticket": function() {
+						jQuery(".new_issue input[name='"+current_opposed_name_button+"']").remove();
 						the_issue_form.submit();
 					},
 					"Cancel": function() {
@@ -45,6 +50,7 @@ $(function() {
 				modal: true,
 				buttons: {
 					"Create ticket": function() {
+						jQuery(".new_issue input[name='"+current_opposed_name_button+"']").remove();
 						the_issue_form.submit();
 					},
 					"Cancel": function() {
@@ -60,6 +66,7 @@ $(function() {
 			$("#issue_watcher_user_ids_" + $("#issue_assigned_to_id").val()).find('input').prop('checked', true);
 
 			// Exec form
+			jQuery(".new_issue input[name='"+current_opposed_name_button+"']").remove();
 			the_issue_form.submit();
 		}
 	});
@@ -68,7 +75,7 @@ $(function() {
 	var original_assigned_id = $(".edit_issue #issue_assigned_to_id").val();
 
 	// Hook form update issue submission
-	$(".edit_issue input[name='commit'], .edit_issue input[name='continue']").click(function(event) {
+	$(".edit_issue input[name='commit']").click(function(event) {
 		// Get form related
 		var the_issue_form = $(event.target).closest("form");
 		
